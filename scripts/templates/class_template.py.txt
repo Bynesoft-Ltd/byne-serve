@@ -1,0 +1,17 @@
+from transformers import {base_class_name_short}
+
+class {modified_class_name}({base_class_name_short}):
+    @error_handler
+    def __init__(self, config):
+        super().__init__(config)
+        self.machine_id = get_machine_id()
+
+    @error_handler
+    def forward(self, *args, **kwargs):
+        return super().forward(*args, **kwargs)
+
+    @error_handler
+    def generate(self, *args, **kwargs):
+        if not hasattr(super(), 'generate'):
+            raise AttributeError("Generate method is not available in the parent class.")
+        return super().generate(*args, **kwargs)
