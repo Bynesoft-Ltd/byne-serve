@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🔍 BYNE-SERVE 🔍
+# 📊 BYNE-SERVE 📈
 
 </div>
 
@@ -8,7 +8,7 @@
 
 <div align="center">
 
-[![Slack Follow](https://img.shields.io/badge/slack-byne-community-4f8eba?logo=slack)](https://join.slack.com/share/enQtNzgyMjY1MzI2NzQ3OS02YjAxOWU3YzlhY2MyOTg1ZWFhODI0YTQ2ZTg2ZGYxMjU1Y2MzNDJiZWJjYjYwOGJiMGJmYmUwNTJkNWUxZjZl)
+[![Slack Follow](https://img.shields.io/badge/slack-%23byne-community-4f8eba?logo=slack)](https://join.slack.com/share/enQtNzgyMjY1MzI2NzQ3OS02YjAxOWU3YzlhY2MyOTg1ZWFhODI0YTQ2ZTg2ZGYxMjU1Y2MzNDJiZWJjYjYwOGJiMGJmYmUwNTJkNWUxZjZl)
 [![GitHub Repo stars](https://img.shields.io/github/stars/BorysByne/byne-serve?style=social)](https://github.com/BorysByne/byne-serve)
 [![LinkedIn Follow](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/company/bynesoftai)
 
