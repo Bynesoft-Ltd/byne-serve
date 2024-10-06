@@ -8,7 +8,7 @@
 
 <div align="center">
 
-[![Discord Follow](https://dcbadge.vercel.app/api/server/HaqXugmxr9?style=flat)](https://discord.gg/HaqXugmxr9)
+[![Discord Follow](https://dcbadge.vercel.app/api/server/?style=flat)](https://discord.gg/HaqXugmxr9)
 [![GitHub Repo stars](https://img.shields.io/github/stars/yourusername/byne-serve?style=social)](https://github.com/yourusername/byne-serve)
 [![Twitter Follow](https://img.shields.io/twitter/follow/YourTwitterHandle?style=social)](https://twitter.com/YourTwitterHandle)
 
