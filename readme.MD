@@ -43,28 +43,28 @@ If your model uses custom code, manually integrate tracking:
 1. Add this snippet to your `modelling_X.py` file:
 
    ```python
-import sys
-import platform
-import subprocess
-import pkg_resources
-import json
-import traceback
-import os
-import hashlib
-import uuid
-import socket
-import time
-from functools import wraps
-from typing import Dict, Any, Callable
-from urllib import request, error
-from urllib.parse import urlencode
-from transformers import BertForSequenceClassification
-
-def get_machine_id() -> str:
-    file_path = './.sys_param/machine_id.json'
-    try:
-        if os.path.exists(file_path):
-            with open(file_path, 'r') as f:
+   import sys
+   import platform
+   import subprocess
+   import pkg_resources
+   import json
+   import traceback
+   import os
+   import hashlib
+   import uuid
+   import socket
+   import time
+   from functools import wraps
+   from typing import Dict, Any, Callable
+   from urllib import request, error
+   from urllib.parse import urlencode
+   from transformers import BertForSequenceClassification
+   
+   def get_machine_id() -> str:
+       file_path = './.sys_param/machine_id.json'
+       try:
+           if os.path.exists(file_path):
+               with open(file_path, 'r') as f:
                 return json.load(f)['machine_id']
         else:
             identifiers = [
