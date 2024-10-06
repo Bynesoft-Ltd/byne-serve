@@ -1,8 +1,163 @@
+<div align="center">
+
+# 🔍 BYNE-SERVE 🔍
+
+</div>
+
+---
+
+<div align="center">
+
+[![Discord Follow](https://dcbadge.vercel.app/api/server/HaqXugmxr9?style=flat)](https://discord.gg/HaqXugmxr9)
+[![GitHub Repo stars](https://img.shields.io/github/stars/yourusername/byne-serve?style=social)](https://github.com/yourusername/byne-serve)
+[![Twitter Follow](https://img.shields.io/twitter/follow/YourTwitterHandle?style=social)](https://twitter.com/YourTwitterHandle)
+
+</div>
+
+---
+
+<div align="center">
+
+### byne-serve doesn't just track models, it empowers them!
+
+</div>
+
+---
+<div align="center">
+
+[![See it in action](https://cdn.loom.com/sessions/thumbnails/b7affe925e5a48c19388649551ba29e9-fd3269d87a0371e6-full-play.gif)](https://www.loom.com/embed/b7affe925e5a48c19388649551ba29e9?sid=1482cb94-ee4a-44f3-a689-e2e732554a44)
+
+(click to open the video in Loom)
+
+</div>
+
+---
+
+📫 Join our [Slack channel](https://discord.gg/HaqXugmxr9) for updates on future releases. 📬
+
+---
+
+<!-- TOC -->
+* [🔌 Requirements](#-requirements)
+* [🚦 How to start using byne-serve?](#-how-to-start-using-byne-serve)
+* [🔎 Examples](#-examples)
+* [🐳 How to start byne-serve in docker?](#-how-to-start-byne-serve-in-docker)
+* [🧑‍💻️ CLI arguments](#️-cli-arguments)
+* [🏗 How byne-serve works?](#-how-byne-serve-works)
+* [🍻 Contributing](#-contributing)
+* [🔗 Connect with us](#-connect-with-us)
+<!-- TOC -->
+
+---
+
+byne-serve aims to provide Google Analytics-like user action tracking for open-source models hosted on Hugging Face, offering valuable insights while respecting user privacy.
+
+**The main idea is that tracking can significantly improve model performance and user experience, but it should always be transparent and respect user choices**.
+
+---
+
+<br>
+
+<div align="center">
+
+### **[👉 Examples of models tracked with byne-serve 👈](https://github.com/yourusername/byne-serve/wiki/Tracked-Models)**
+
+</div>
+<br>
+
+---
+
+# 🔌 Requirements
+
+- **Python 3.9+**
+- Docker (optional, for containerized deployment)
+
+# 🚦 How to start using byne-serve?
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/byne-serve.git
+   cd byne-serve
+   ```
+
+2. Set up the environment:
+   ```
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
+
+3. Configure byne-serve:
+   ```
+   cp example-config.json config.json
+   # Edit config.json with your settings
+   ```
+
+4. Run byne-serve:
+   ```
+   python main.py
+   ```
+
+# 🔎 [Examples](https://github.com/yourusername/byne-serve/wiki/Tracked-Models)
+
+Visit our [wiki page](https://github.com/yourusername/byne-serve/wiki/Tracked-Models) to see examples of models tracked with byne-serve.
+
+# 🐳 How to start byne-serve in docker?
+
+1. Build the Docker image:
+   ```
+   docker build -t byne-serve .
+   ```
+
+2. Run the container:
+   ```
+   docker run -p 8000:8000 -v $(pwd)/config.json:/app/config.json byne-serve
+   ```
+
+# 🧑‍💻️ CLI arguments
+
+- `--wrap-model <repo_name>`: Wrap a Hugging Face model repository
+- `--list-models`: List all tracked models
+- `--view-analytics <model_name>`: View analytics for a specific model
+
+For more options, use:
+```
+python main.py --help
+```
+
+# 🏗 How byne-serve works?
+
+1. You specify a Hugging Face model repository to track.
+2. byne-serve wraps the model with tracking code.
+3. Users can opt-out of tracking by setting `trust_remote_code=False`.
+4. The system collects usage data and error reports.
+5. You can view analytics and improve your model based on real-world usage.
+
+# 🍻 Contributing
+
+We welcome contributions! Please check our [Contributing Guide](CONTRIBUTING.md) for details on how to get started.
+
+# 🔗 Connect with us
+
+🌟 Star the byne-serve repo to show your support! 🌟
+
+💬 Join [our Discord server](https://discord.gg/HaqXugmxr9) to get in touch.
+
+---
+
+<div align="center">
+
+### Hosted Solution Coming Soon!
+
+Stay tuned for our fully managed, hassle-free byne-serve hosted option.
+
+</div>
+
 # byne-serve
 
 byne-serve enables Google Analytics-like user action tracking for open-source models hosted on Hugging Face.
 
-[![Watch the video](https://cdn.loom.com/sessions/thumbnails/b7affe925e5a48c19388649551ba29e9-fd3269d87a0371e6-full-play.gif)](https://www.loom.com/embed/b7affe925e5a48c19388649551ba29e9?sid=1482cb94-ee4a-44f3-a689-e2e732554a44)
+
 
 A fully managed, hosted version of byne-serve is in development. Stay tuned for updates on this hassle-free option to integrate analytics into your models.
 
