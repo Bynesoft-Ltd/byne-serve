@@ -2,8 +2,7 @@
 
 byne-serve enables Google Analytics-like user action tracking for open-source models hosted on Hugging Face.
 
-
-## Hosted Option Coming Soon!
+[![Watch the video](https://cdn.loom.com/sessions/thumbnails/b7affe925e5a48c19388649551ba29e9-fd3269d87a0371e6-full-play.gif)](https://www.loom.com/embed/b7affe925e5a48c19388649551ba29e9?sid=1482cb94-ee4a-44f3-a689-e2e732554a44)
 
 A fully managed, hosted version of byne-serve is in development. Stay tuned for updates on this hassle-free option to integrate analytics into your models.
 
