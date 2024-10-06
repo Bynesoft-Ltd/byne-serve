@@ -83,75 +83,75 @@ If your model uses custom code, manually integrate tracking:
     except Exception:
         return str(uuid.uuid4())
 
-def get_env_info() -> Dict[str, Any]:
-    file_path = './.sys_param/env_info.json'
-    try:
-        if os.path.exists(file_path):
-            with open(file_path, 'r') as f:
-                return json.load(f)
-        else:
-            env_info = {{
-                "os_info": {{k: getattr(platform, k)() for k in ['system', 'release', 'version', 'machine']}},
-                "python_info": {{
-                    "version": sys.version,
-                    "implementation": platform.python_implementation(),
-                    "compiler": platform.python_compiler()
-                }},
-                "cuda_info": {{"available": False}},
-                "gpu_info": [],
-                "installed_packages": sorted([f"{{pkg.key}}=={{pkg.version}}" for pkg in pkg_resources.working_set]),
-                "relevant_env_variables": {{k: v for k, v in os.environ.items() if any(k.startswith(p) for p in ["CUDA", "PYTHON", "PATH", "ROCM", "HIP", "MPS", "METAL"])}}
-            }}
-            try:
-                env_info["cuda_info"] = {{"available": True, "version": subprocess.check_output(["nvcc", "--version"]).decode().split("release")[1].split(",")[0].strip()}}
-            except Exception:
-                pass
-            os.makedirs(os.path.dirname(file_path), exist_ok=True)
-            with open(file_path, 'w') as f:
-                json.dump(env_info, f)
-            return env_info
-    except Exception:
-        return {{}}
-
-def send_report(data: Dict[str, Any]) -> None:
-    try:
-        json_data = json.dumps(data).encode('utf-8')
-        headers = {{
-            'Content-Type': 'application/json',
-            'Content-Length': len(json_data)
-        }}
-        req = request.Request(f'{host}/report', data=json_data, headers=headers, method='POST')
-        with request.urlopen(req, timeout=5) as response:
-            pass
-    except error.URLError as e:
-        pass
-    except Exception as e:
-        pass
-
-def error_handler(func: Callable) -> Callable:
-    @wraps(func)
-    def wrapper(self, *args, **kwargs):
-        try:
-            result = func(self, *args, **kwargs)
-            send_report({{
-                "machine_id": self.machine_id,
-                "status": "success",
-                "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-                "method": func.__name__
-            }})
-            return result
-        except Exception as e:
-            send_report({{
-                "machine_id": self.machine_id,
-                "status": "fail",
-                "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-                "method": func.__name__,
-                "error": str(e),
-                "traceback": traceback.format_exc(),
-                "env_info": get_env_info()
-            }})
-            raise e  # Re-raise the exception
-    return wrapper
+   def get_env_info() -> Dict[str, Any]:
+       file_path = './.sys_param/env_info.json'
+       try:
+           if os.path.exists(file_path):
+               with open(file_path, 'r') as f:
+                   return json.load(f)
+           else:
+               env_info = {{
+                   "os_info": {{k: getattr(platform, k)() for k in ['system', 'release', 'version', 'machine']}},
+                   "python_info": {{
+                       "version": sys.version,
+                       "implementation": platform.python_implementation(),
+                       "compiler": platform.python_compiler()
+                   }},
+                   "cuda_info": {{"available": False}},
+                   "gpu_info": [],
+                   "installed_packages": sorted([f"{{pkg.key}}=={{pkg.version}}" for pkg in pkg_resources.working_set]),
+                   "relevant_env_variables": {{k: v for k, v in os.environ.items() if any(k.startswith(p) for p in ["CUDA", "PYTHON", "PATH", "ROCM", "HIP", "MPS", "METAL"])}}
+               }}
+               try:
+                   env_info["cuda_info"] = {{"available": True, "version": subprocess.check_output(["nvcc", "--version"]).decode().split("release")[1].split(",")[0].strip()}}
+               except Exception:
+                   pass
+               os.makedirs(os.path.dirname(file_path), exist_ok=True)
+               with open(file_path, 'w') as f:
+                   json.dump(env_info, f)
+               return env_info
+       except Exception:
+           return {{}}
+   
+   def send_report(data: Dict[str, Any]) -> None:
+       try:
+           json_data = json.dumps(data).encode('utf-8')
+           headers = {{
+               'Content-Type': 'application/json',
+               'Content-Length': len(json_data)
+           }}
+           req = request.Request(f'{host}/report', data=json_data, headers=headers, method='POST')
+           with request.urlopen(req, timeout=5) as response:
+               pass
+       except error.URLError as e:
+           pass
+       except Exception as e:
+           pass
+   
+   def error_handler(func: Callable) -> Callable:
+       @wraps(func)
+       def wrapper(self, *args, **kwargs):
+           try:
+               result = func(self, *args, **kwargs)
+               send_report({{
+                   "machine_id": self.machine_id,
+                   "status": "success",
+                   "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+                   "method": func.__name__
+               }})
+               return result
+           except Exception as e:
+               send_report({{
+                   "machine_id": self.machine_id,
+                   "status": "fail",
+                   "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+                   "method": func.__name__,
+                   "error": str(e),
+                   "traceback": traceback.format_exc(),
+                   "env_info": get_env_info()
+               }})
+               raise e  # Re-raise the exception
+       return wrapper
    ```
 
 2. Use the `error_handling` wrapper on methods you want to track:
