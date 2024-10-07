@@ -102,7 +102,7 @@ This approach has a few important limitations:
 
 byne-serve collects:
 - Unique machine ID for user tracking
-- Detailed bug reports including OS, Python, CUDA, and GPU info
+- Detailed bug reports including OS, Python, CUDA info. GPU info for non-CUDAs will be added soon. 
 
 This stuff can sometimes include the user name / surname in the files pathes. We're dealing with this to ensure GDPR compliance. 
 
