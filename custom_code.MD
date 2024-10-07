@@ -12,7 +12,7 @@ Automatic wrapping of custom code models is not possible due to their non-standa
 
 To manually wrap a custom code model with byne-serve tracking, follow these steps:
 
-1. Add the following imports and utility functions to your main model file:
+1. This is a template of the tracking code. Save it somewhere.
 
 ```python
 import sys
@@ -124,7 +124,7 @@ def error_handler(func: Callable) -> Callable:
             raise e  # Re-raise the exception
     return wrapper
 ```
-We suggest you prepare the code with:
+Once saved, use the `.format` method to get the tracking code.  
 
 ```python
 static_template_path = TEMPLATE_PATH
@@ -135,6 +135,7 @@ with open(static_template_path, 'r') as template_file:
         host=YOUR_BYNE-SERVE_ENDPOINT
     )
 ```
+Finally, insert it in the `modeling_custom.py` or another file where you define your model class.
 
 2. Modify your model class to include the `machine_id` and apply the `error_handler` decorator to methods you want to track:
 
