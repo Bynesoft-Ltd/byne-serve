@@ -48,7 +48,7 @@
 
 byne-serve aims to provide Google Analytics-like user action tracking for open-source models hosted on Hugging Face, offering usage insights while respecting user privacy (as much as we can).
 
-**The project is born out of our struggle to make sense of the "Downloaded This Month" widget on HuggingFace. Seriously, humanity has advanced enough to track every single click when you give people a web app, but the best you get when open-sourcing a model is "Downloaded This Month"?**.
+**The project is born out of our struggle to make sense of the "Downloaded This Month" widget on HuggingFace. Seriously, humanity has advanced enough to track every single click when you give people a web app, but the best you get when open-sourcing a model is "Downloaded This Month"?**
 
 
 ---
@@ -96,7 +96,7 @@ Under the hood, we create a custom code version of the Huggingface repo to bind 
 
 This approach has a few important limitations: 
 1. Non-auto classes will not be tracked. 
-2. Models with custom code require manual integration of the tracking code. View the Guide to learn more about using byne-serve with custom code models.
+2. Models with custom code require manual integration of the tracking code. View the [Guide](/custom_code.MD) to learn more about using byne-serve with custom code models.
 
 # 🔒 Privacy and data collection
 
