@@ -73,6 +73,9 @@ byne-serve aims to provide Google Analytics-like user action tracking for open-s
 
 3. Wrap your model:
    ```
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   pip install -r requirements.txt
    cd scripts
    python wrap_model.py
    # Follow prompts for source repo, target repo, and deployment URL
