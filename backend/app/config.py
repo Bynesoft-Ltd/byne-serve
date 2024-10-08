@@ -4,7 +4,8 @@ from pydantic_settings import BaseSettings
 def correct_postgres_url(url):
     print(url)
     if url.startswith('postgres://'):
-        return 'postgresql://' + url[len('postgres://'):]
+        url = 'postgresql://' + url[len('postgres://'):]
+    print(url)
     return url
 
 class Settings(BaseSettings):
