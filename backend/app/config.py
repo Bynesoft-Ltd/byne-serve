@@ -1,15 +1,8 @@
 import os
 from pydantic_settings import BaseSettings
 
-def correct_postgres_url(url):
-    print(url)
-    if url.startswith('postgres://'):
-        url = 'postgresql://' + url[len('postgres://'):]
-    print(url)
-    return url
-
 class Settings(BaseSettings):
-    DATABASE_URL: str = correct_postgres_url(os.environ["DATABASE_URL"])
+    DATABASE_URL: str = os.environ["DATABASE_URL"]
     SECRET_KEY: str = os.environ["SECRET_KEY"]
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
