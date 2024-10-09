@@ -26,11 +26,6 @@ app.include_router(model_routes.router, prefix="/models", tags=["Models"])
 app.include_router(reports.router, prefix="/reports", tags=["Reports"])
 
 
-@app.options("/{full_path:path}")
-async def options_route(full_path: str):
-    return {"message": "OK"}
-
-
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the Model Reporting API"}
