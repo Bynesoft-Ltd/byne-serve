@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
 export const loginUser = async (username, password) => {
-  const response = await axios.post(`${API_URL}/auth/token`,
+  const response = await axios.post(`${API_URL}/auth/token/`,
     new URLSearchParams({
       'username': username,
       'password': password
@@ -16,7 +16,7 @@ export const loginUser = async (username, password) => {
 };
 
 export const registerUser = async (username, email, password) => {
-  const response = await axios.post(`${API_URL}/auth/register`, {
+  const response = await axios.post(`${API_URL}/auth/register/`, {
     username,
     email,
     password
@@ -25,7 +25,7 @@ export const registerUser = async (username, email, password) => {
 };
 
 export const getCurrentUser = async (token) => {
-  const response = await axios.get(`${API_URL}/auth/users/me`, {
+  const response = await axios.get(`${API_URL}/auth/users/me/`, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
