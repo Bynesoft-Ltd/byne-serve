@@ -10,6 +10,8 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Model Reporting API")
 
+print(settings.CORS_ORIGINS)
+
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
