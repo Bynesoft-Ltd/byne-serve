@@ -1,6 +1,6 @@
 {
   "version": 2,
   "env": {
-    "REACT_APP_API_URL": "https://byne-serve-755fc296550a.herokuapp.com"
+    "REACT_APP_API_URL": "https://report.byne-serve.com"
   }
 }

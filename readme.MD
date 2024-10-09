@@ -38,6 +38,7 @@
 ---
 
 <!-- TOC -->
+* [🌐 Hosted demo](#-hosted-version)
 * [🔌 Requirements](#-requirements)
 * [🐳 How to start byne-serve?](#-how-to-start-byne-serve-in-docker)
 * [🏗 How byne-serve works?](#-how-byne-serve-works)
@@ -52,6 +53,21 @@ byne-serve aims to provide Google Analytics-like user action tracking for open-s
 
 
 ---
+
+# 🌐 Hosted version
+
+The hosted version is a demo. Don't expect much from it, but please feel free to take a look [here](https://byne-serve.com).
+
+To get started with the hosted version, skip the Docker installation and register on the app, then create a tracker. Attach the tracker to your model with this code:
+```
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+cd scripts
+python wrap_model.py
+# Follow prompts for source repo, target repo, and deployment URL
+```
+The repo where you pushed the wrapped model will now be tracked!
 
 # 🔌 Requirements
 
@@ -106,12 +122,3 @@ byne-serve collects:
 
 This stuff can sometimes include the user name / surname in the files pathes. We're dealing with this to ensure GDPR compliance. 
 
----
-
-<div align="center">
-
-### Hosted Solution Coming Soon!
-
-Stay tuned for our fully managed, hassle-free byne-serve hosted option.
-
-</div>
