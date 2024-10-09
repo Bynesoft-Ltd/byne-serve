@@ -21,9 +21,14 @@ def create_model(model: ModelCreate, db: Session = Depends(get_db), current_user
 
 
 @router.get("/", response_model=List[ModelOut])
-def read_models(skip: int = 0, limit: int = 100, db: Session = Depends(get_db), current_user=Depends(get_current_user)):
-    models = db.query(Model).offset(skip).limit(limit).all()
-    return models
+# def read_models(skip: int = 0, limit: int = 100, db: Session = Depends(get_db), current_user=Depends(get_current_user)):
+def read_models(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    try:
+        models = db.query(Model).offset(skip).limit(limit).all()
+        return models
+    except Exception as e:
+        print(f"Database query failed: {str(e)}")
+        raise HTTPException(status_code=500, detail="Database query failed")
 
 
 @router.get("/{model_name}", response_model=ModelOut)
