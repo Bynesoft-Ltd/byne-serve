@@ -32,7 +32,7 @@ api.interceptors.response.use(
 );
 
 export const getModels = async () => {
-  const response = await api.get('/models');
+  const response = await api.get('/models/');
   return response.data;
 };
 
