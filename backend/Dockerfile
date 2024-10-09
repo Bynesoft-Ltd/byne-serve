@@ -15,5 +15,8 @@ COPY ./app /app
 # Set the Python path to include the root directory
 ENV PYTHONPATH=/
 
+# Comment of Heroku deployment
+EXPOSE $PORT
+
 # Command to run the application
 CMD uvicorn app.main:app --host 0.0.0.0 --port $PORT

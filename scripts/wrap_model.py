@@ -75,7 +75,11 @@ def get_user_inputs() -> Tuple[str, str, str, str]:
     target_repo_name = input("Enter the target repository name (e.g., 'my-logged-model'): ")
 
     # Get the byne-serve address
-    host = input(f"Enter the byne-serve address without a slash at the end (e.g., 'http://localhost:8000/reports/{target_repo_name}'): ")
+    default = f'https://byne-serve-755fc296550a.herokuapp.com/reports/{target_repo_name}'
+    host = input(f"Enter the byne-serve address without a slash at the end (default: {default}): ")
+
+    if host == "":
+        host = default
 
     return model_name_or_path, target_repo_name, host
 
