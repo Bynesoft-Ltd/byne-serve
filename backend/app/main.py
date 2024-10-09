@@ -10,12 +10,11 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Model Reporting API")
 
-print(settings.CORS_ORIGINS)
 
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS.split(","),
+    allow_origins=[origin.strip() for origin in settings.CORS_ORIGINS.split(",")],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -26,9 +25,16 @@ app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
 app.include_router(model_routes.router, prefix="/models", tags=["Models"])
 app.include_router(reports.router, prefix="/reports", tags=["Reports"])
 
+
+@app.options("/{full_path:path}")
+async def options_route(full_path: str):
+    return {"message": "OK"}
+
+
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the Model Reporting API"}
+
 
 @app.get("/health")
 def health_check(db: Session = Depends(get_db)):
