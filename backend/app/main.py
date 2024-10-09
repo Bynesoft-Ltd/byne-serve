@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from .db.database import engine, get_db
 from .db import models
-from .api import auth, models as model_routes, reports
+from .api import auth, model_routes, reports
 from .config import settings
 
 models.Base.metadata.create_all(bind=engine)
