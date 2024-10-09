@@ -83,4 +83,6 @@ tmp/
 .sys_param/
 sys_param/
 package-lock.json
+.DS_Store
+__pycache__/
 
