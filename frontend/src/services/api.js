@@ -42,22 +42,22 @@ export const createModel = async (modelData) => {
 };
 
 export const getModel = async (name) => {
-  const response = await api.get(`/models/${name}/`);
+  const response = await api.get(`/models/${name}`);
   return response.data;
 };
 
 export const updateModel = async (name, modelData) => {
-  const response = await api.put(`/models/${name}/`, modelData);
+  const response = await api.put(`/models/${name}`, modelData);
   return response.data;
 };
 
 export const deleteModel = async (name) => {
-  const response = await api.delete(`/models/${name}/`);
+  const response = await api.delete(`/models/${name}`);
   return response.data;
 };
 
 export const getUniqueUsers = async (modelName) => {
-  const response = await api.get(`/models/${modelName}/unique_users/`);
+  const response = await api.get(`/models/${modelName}/unique_users`);
   return response.data;
 };
 
@@ -66,7 +66,7 @@ export const getMethodHistory = async (modelName, startDate, endDate) => {
   if (startDate) params.append('start_date', startDate.toISOString());
   if (endDate) params.append('end_date', endDate.toISOString());
 
-  const response = await api.get(`/models/${modelName}/history/`, { params });
+  const response = await api.get(`/models/${modelName}/history`, { params });
   return response.data;
 };
 
@@ -78,7 +78,7 @@ export const getReports = async (name, page = 1, limit = 10) => {
     limit: limit.toString(),
   });
 
-  const response = await api.get(`/reports/${name}/`, { params });
+  const response = await api.get(`/reports/${name}`, { params });
   if (response.status !== 200) {
     throw new Error('Failed to fetch reports');
   }
@@ -86,6 +86,6 @@ export const getReports = async (name, page = 1, limit = 10) => {
 };
 
 export const deleteReport = async (reportId) => {
-  const response = await api.delete(`/reports/${reportId}/`);
+  const response = await api.delete(`/reports/${reportId}`);
   return response.data;
 };
