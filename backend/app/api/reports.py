@@ -40,7 +40,7 @@ def read_reports(
     if status:
         query = query.filter(Report.status == status)
 
-    reports = query.offset(skip).limit(limit).all()
+    reports = query.order_by(Report.timestamp.desc()).offset(skip).limit(limit).all()
     return reports
 
 
