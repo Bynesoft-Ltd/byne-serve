@@ -13,7 +13,6 @@ from functools import wraps
 from typing import Dict, Any, Callable
 from urllib import request, error
 from urllib.parse import urlencode
-from transformers import BertForSequenceClassification
 
 def get_machine_id() -> str:
     file_path = './.sys_param/machine_id.json'
@@ -57,10 +56,30 @@ def get_env_info() -> Dict[str, Any]:
                 "installed_packages": sorted([f"{{pkg.key}}=={{pkg.version}}" for pkg in pkg_resources.working_set]),
                 "relevant_env_variables": {{k: v for k, v in os.environ.items() if any(k.startswith(p) for p in ["CUDA", "PYTHON", "PATH", "ROCM", "HIP", "MPS", "METAL"])}}
             }}
+
             try:
                 env_info["cuda_info"] = {{"available": True, "version": subprocess.check_output(["nvcc", "--version"]).decode().split("release")[1].split(",")[0].strip()}}
             except Exception:
                 pass
+
+            # MPS detection
+            try:
+                import torch
+
+                if torch.backends.mps.is_available():
+                    env_info["gpu_info"].append(str({{"type": "MPS"}}))
+            except Exception:
+                pass
+
+            # AMD GPU detection
+            try:
+                if platform.system() == "Linux":
+                    amd_gpu_info = subprocess.check_output(["lspci", "-nn", "|", "grep", "VGA"]).decode()
+                    if "AMD" in amd_gpu_info:
+                        env_info["gpu_info"].append(str({{"type": "AMD", "info": amd_gpu_info}}))
+            except Exception:
+                pass
+
             os.makedirs(os.path.dirname(file_path), exist_ok=True)
             with open(file_path, 'w') as f:
                 json.dump(env_info, f)
